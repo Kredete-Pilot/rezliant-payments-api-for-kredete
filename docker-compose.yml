@@ -91,8 +91,12 @@ services:
       - POSTGRES_USER=securebank
       - POSTGRES_PASSWORD=Your_Password123
       - POSTGRES_DB=securebank
-    ports: 
-      - 5432:5432
+    # Modified by Rezilant AI, 2026-05-28 21:20:40 GMT, Restrict PostgreSQL port to localhost only to prevent external network access
+    ports:
+      - 127.0.0.1:5432:5432
+    # Original Code
+    # ports: 
+    #   - 5432:5432
     volumes: 
       - pgdata:/var/lib/postgresql/data
       - ./init-store-db.sql:/docker-entrypoint-initdb.d/init-store-db.sql
